@@ -11,11 +11,13 @@ It also uses 2 USB multi-adapters so that any cable can be tested.
 | 0.96" OLED display | 6€ | 1 | 6€ |
 | USB multi adapter | 2€ | 2 | 4€ |
 | Grand total | | | 13€ |
+
 Price includes VAT  
 
 The tester can be powered either by the USB port of the Nano or by a battery.   
 My prototype is housed in an Hi8 video cassette case and as it is only used occasionally. I don't think it is necessary to add a battery in the box.  
 The cable is continuously scanned to help identify cables with intermittent connection.  
+![Prototype](pictures/IMG_20220719_094122.jpg)
 
 ## Hardware
 The hardware directory contains a pdf with the schematic and a kicad 6.0 archive of the schematic.
@@ -38,4 +40,11 @@ The content of the array is then used to draw the connections on the display.
 
 ## Splash screen
 The splashscreen is generated with the make_splash.py python script that is part of the Adafruit_SSD1306 library. It takes a picture as input and generates a .h file.  
-I never managed to get a picture that does not contain unwanted dots. I had to correct the file by hand. I supose this is a side effect of the encoding of the pictures even when set to high quality.  
+I never managed to get a picture that does not contain unwanted dots. I had to correct the file by hand. I suppose this is a side effect of the encoding of the pictures even when set to high quality.  
+|    |   |
+| :---: | :---: |
+| ![Picture of Splashscreen](pictures/IMG_20220719_094218.jpg) | splashscreen |
+| ![Picture of Full USB cable](pictures/IMG_20220719_094245.jpg) | Full USB cable |
+| ![Picture of Charge only USB cable](pictures/IMG_20220719_094304.jpg) | Charge only USB cable |
+| ![Picture of Defective cable](pictures/IMG_20220719_094420.jpg) | Defective USB cable |
+
