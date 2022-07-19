@@ -23,7 +23,8 @@ The cable is continuously scanned to help identify cables with intermittent conn
 The hardware directory contains a pdf with the schematic and a kicad 6.0 archive of the schematic.  
 The USB multi adapters have only USB A (male/female), USB C, micro USB. As there are still development board that are using mini SB I have a lot of them in my drawers. So I have have added a mini USB on one of the adapter.Small AWG32 wires are solded on the mini USB and connected on the 4 holes located in the corner of the card. A layer of epoxy insulates the socket and hold it in place.  
 ![Picture of modified adapter](pictures/IMG_20220719_102000.jpg]
-Everything can take place in an old Hi8 cassette box
+Everything can take place in an old Hi8 cassette box. The screen and the "main board" are hot glued on top and bottom of the box, the adapters when plugged one into the other are just the height of the box.
+![picture of the closed box](pictures/IMG_20220719_110425.jpg)
 
 ## How it works
 All the IOs on the 2 USB adapters are programmed as input.  
@@ -46,7 +47,7 @@ The splashscreen is generated with the make_splash.py python script that is part
 I never managed to get a picture that does not contain unwanted dots. I had to correct the file by hand. I suppose this is a side effect of the encoding of the pictures even when set to high quality.  
 |    |   |
 | :---: | :---: |
-| ![Picture of yhe Splashscreen](pictures/IMG_20220719_094218.jpg) | splashscreen |
+| ![Picture of the Splashscreen](pictures/IMG_20220719_110228.jpg) | splashscreen |
 | ![Picture of display with Full USB cable connected](pictures/IMG_20220719_094245.jpg) | Full USB cable |
 | ![Picture of display with Charge only USB cable connected](pictures/IMG_20220719_094304.jpg) | Charge only USB cable |
 | ![Picture of display with Defective cable connected](pictures/IMG_20220719_094420.jpg) | Defective USB cable |
