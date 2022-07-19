@@ -36,6 +36,9 @@
 // uncomment following line for debug
 //#define debug
 
+const uint8_t version = 1;
+const uint8_t release = 0;
+
 Adafruit_SSD1306 display(128, 64, &Wire, -1); // reset pin set to -1 to inhibit reset support
 
 const uint8_t pinlist[8] = {5, 6, 7, 8, 9, 10, 11, 12};   // Arduino pins for the 2 USB adaptors
@@ -44,6 +47,8 @@ uint8_t cableState[4][4];                                 // Table holding the i
 
 // constant used to draw the interconnections
 const char* pinName[4]={"VBUS "," D-  "," D+  ","GND  "}; // Signal names
+const uint8_t xVersion = 51;                              // X location of version string
+const uint8_t yVersion = 45;                              // Y location of version string
 const uint8_t firsLine = 10;                              // Y location of first line of text
 const uint8_t yStep = 14;                                 // Step between text lines
 const uint8_t xStep = 10;                                 // X step for interconnection drawing
@@ -153,36 +158,37 @@ void displayTable(void){
 */
 void scanLines(void){
   // drive from connector 1 and read from connector 2
-  for (int usb1 = 0; usb1 < 4; usb1++) {
+  for (uint8_t usb1 = 0; usb1 < 4; usb1++) {
     pinMode(pinlist[usb1], OUTPUT);                      // set pin usb1 on connector 1 as ouput
-    for (int usb2 = 0; usb2 < 4; usb2++) {               // scan connector 2 lines
+    for (uint8_t usb2 = 0; usb2 < 4; usb2++) {           // scan connector 2 lines
 
       // Output HIGH, lines pulled LOW
       digitalWrite(pinlist[usb1], HIGH);                 // set pin usb1 on connector 1 HIGH
       digitalWrite(pinPull, LOW);                        // pull all the lines to a weak LOW
-      delay(25);                                         // wait for the lines to stabilize
+      delay(2);                                          // wait for the lines to stabilize
       int level = digitalRead(pinlist[usb2 + 4]);        // read line usb2 on connector 2
       cableState[usb1][usb2] |=  (level == HIGH) ? 1 : 0;// if same as input set bit 0
 
       // Output LOW, lines pulled HIGH
       digitalWrite(pinlist[usb1], LOW);                  // set pin usb1 on connector 1 LOW
       digitalWrite(pinPull, HIGH);                       // pull all the lines to a weak HIGH
-      delay(25);                                         // wait for the lines to stabilize
+      delay(2);                                          // wait for the lines to stabilize
       level = digitalRead(pinlist[usb2 + 4]);            // read line usb2 on connector 2
       cableState[usb1][usb2] |=  (level == LOW) ? 2 : 0; // if same as input set bit 1
     }
-    pinMode(pinlist[usb1], INPUT);                          // set pin usb1 on connector 1 as input
+    pinMode(pinlist[usb1], INPUT);                       // set pin usb1 on connector 1 as input
   }
 
 }
 
 
 void setup() {
+  char buffer[5];
 #ifdef debug
   Serial.begin(115200);
 #endif
 
-  for (int i = 0; i < 8; i++) {
+  for (uint8_t i = 0; i < 8; i++) {
     pinMode(pinlist[i], INPUT); // all I/Os as input without pullup so HiZ
   }
   pinMode(pinPull,OUTPUT);
@@ -193,8 +199,14 @@ void setup() {
  
   display.clearDisplay();   // clears the screen
   display.drawBitmap(0, 0, usbcable_data, usbcable_width, usbcable_height,1); // download splash screen
+  display.setCursor(xVersion, yVersion);
+  display.setTextSize(2);
+  display.setTextColor(WHITE);
+  sprintf(buffer, "V%1d.%1d", version, release);
+  display.print(buffer);
   display.display();        // show splashscreen
-  delay(5000);              // delay so user can contemplate the spash screen
+  delay(3000);              // delay so user can contemplate the spash screen
+  display.setTextSize(1);
   display.clearDisplay();   // clears the screen
   display.display();
 
