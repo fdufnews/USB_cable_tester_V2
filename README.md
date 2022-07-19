@@ -26,6 +26,8 @@ The USB multi adapters have only USB A (male/female), USB C, micro USB. As there
 Everything can take place in an old Hi8 cassette box. The screen and the "main board" are hot glued on top and bottom of the box, the adapters when plugged one into the other are just the height of the box.
 ![picture of the closed box](pictures/IMG_20220719_110425.jpg)
 
+__One thing to note:__ on multi USB adapters, GND and connector body are connected to each other. Thus a GND break can go unnoticed if the shielding is good. This can be a problem if the equipment using the cable has a separate earth and electrical ground.
+
 ## How it works
 All the IOs on the 2 USB adapters are programmed as input.  
 All 8 lines connected to a 4.7k Ohms resistor network  
